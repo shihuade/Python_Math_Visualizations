@@ -3,7 +3,7 @@
 # An implementation of the Domino Shuffling Algorithm on Aztec Diamong Graph
 
 # This script uses the Matplotlib module to make an animation of this algorithm.
-# Matplotlib gives very nice outputs, but it got very slow for drawing large az(n).
+# Matplotlib gives very nice outputs, but it got very slow for large n.
 # I suggest using the Cairo version instead when n is greater than 100.
 
 import random

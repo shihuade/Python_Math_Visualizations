@@ -137,11 +137,12 @@ class Aztec_Diamond:
 fig = plt.figure(figsize=(6,6))
 Order = 40
 az = Aztec_Diamond(0)
-for k in range(Order):
-    az = az.delete().draw(3*k).slide().draw(3*k+1).create().draw(3*k+2)
 
+# Use the following line to draw the frames of the animation
+#for k in range(Order):
+#    az = az.delete().draw(3*k).slide().draw(3*k+1).create().draw(3*k+2)
 
-# To draw a random tiling of az(n) with n fixed, uncomment the following lines: 
+# To draw a random tiling of az(n) with n fixed, use the following lines instead: 
 #for k in range(Order):
 #    az = az.delete().slide().create()
 #az.draw(Order)

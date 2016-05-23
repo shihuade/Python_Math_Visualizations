@@ -1,7 +1,7 @@
 #coding=utf-8
 
 import numpy as np
-from numpy import sinh, cosh, sin, cos
+from numpy import sinh, cosh, sin, cos, sqrt
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 

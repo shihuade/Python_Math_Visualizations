@@ -1,7 +1,7 @@
 #coding=utf-8
 
 import numpy as np
-from numpy import exp, pi, sinh, cosh,sin, cos
+from numpy import exp, pi, sinh, cosh, sin, cos
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -10,8 +10,8 @@ ax = fig.gca(projection='3d')
 #ax.axis('off')
 #ax.view_init(60,30)
 
-x = np.linspace(-1,1,30)
-y = np.linspace(0,0.5*pi,30)
+x = np.linspace(-1, 1, 30)
+y = np.linspace(0, 0.5*pi, 30)
 X,Y = np.meshgrid(x,y)
 
 n = 5  
@@ -25,7 +25,7 @@ def CalabiYau(z,k1,k2):
 for k1 in range(n):
     for k2 in range(n):
         Z = CalabiYau(X+Y*1j,k1,k2)
-        surface = ax.plot_surface(Z[0],Z[1],Z[2],rstride=1,cstride=1,lw=0.1,cmap='hsv',antialiased=True)
+        surface = ax.plot_surface(Z[0] ,Z[1], Z[2], rstride=1, cstride=1, lw=0.1, cmap='hsv')
 
 #plt.show()
 plt.savefig('Calabi_Yau_Manifold.png')

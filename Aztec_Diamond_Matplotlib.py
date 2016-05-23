@@ -1,6 +1,6 @@
 #coding = utf-8
 
-# An implementation of the Domino Shuffling Algorithm on Aztec Diamong Graph
+# An implementation of the Domino Shuffling Algorithm on Aztec Diamond Graphs.
 
 # This script uses the Matplotlib module to make an animation of this algorithm.
 # Matplotlib gives very nice outputs, but it got very slow for large n.

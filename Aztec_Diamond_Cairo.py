@@ -13,14 +13,14 @@ class Aztec_Diamond:
         The keys of the dict are the "coordinates" of the unit squares. 
         Each square is specified by its left bottom corner (i,j).
         The j-th row (j from y=-n to y=n-1) contains min(n+1+j,n-j) unit squares
-        Use "n", "s", "w", "e", "x" to represent the state of the squares.
+        Use "n", "s", "w", "e", "x" to represent the states of the squares.
         """
         
         self.order = n
         self.tile = dict()
-        for j in xrange(-n,n):
+        for j in range(-n,n):
             k = min(n+1+j,n-j)
-            for i in xrange(-k,k):
+            for i in range(-k,k):
                 self.tile[(i,j)] = 'x'
                 
     def delete(self):
@@ -31,9 +31,9 @@ class Aztec_Diamond:
         To find all the bad blocks one must start the searching from the boundary.
         """
         n = self.order
-        for j in xrange(-n,n):
+        for j in range(-n,n):
             k = min(n+1+j,n-j)
-            for i in xrange(-k,k):
+            for i in range(-k,k):
                 try:
                     if ((self.tile[(i,j)]=='n'
                          and self.tile[(i+1,j)]=='n'
@@ -68,9 +68,9 @@ class Aztec_Diamond:
         To fill in the bad blocks one must start the searching from the boundary.
         """
         n = self.order
-        for j in xrange(-n,n):
+        for j in range(-n,n):
             k = min(n+1-j,n-j)
-            for i in xrange(-k,k):
+            for i in range(-k,k):
                 try:
                     if (self.tile[(i,j)] == 'x'
                         and self.tile[(i+1,j)] == 'x'

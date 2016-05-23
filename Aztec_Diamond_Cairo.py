@@ -26,7 +26,7 @@ class Aztec_Diamond:
     def delete(self):
         """
         Delete all bad blocks in a tiling.
-        A bad block is a pair of dominoes that lies in a 2x2 square
+        A bad block is a pair of dominoes that lie in a 2x2 square
         and move towards each other under the shuffling.
         To find all the bad blocks one must start the searching from the boundary.
         """

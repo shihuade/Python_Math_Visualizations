@@ -25,10 +25,10 @@ class Aztec_Diamond:
                 
     def delete(self):
         """
-        Delete bad blocks.
+        Delete all bad blocks in a tiling.
         A bad block is a pair of dominoes that lies in a 2x2 square
-        which move towards each other under the shuffling.
-        To find the bad blocks, one must start from the boundary.
+        and move towards each other under the shuffling.
+        To find all the bad blocks one must start the searching from the boundary.
         """
         n = self.order
         for j in xrange(-n,n):
@@ -65,7 +65,7 @@ class Aztec_Diamond:
 
     def create(self):
         """
-        To fill in the bad blocks, one must start from the boundary.
+        To fill in the bad blocks one must start the searching from the boundary.
         """
         n = self.order
         for j in xrange(-n,n):

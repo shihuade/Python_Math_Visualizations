@@ -132,4 +132,3 @@ az = Aztec_Diamond(0)
 for k in range(Order):
     az = az.delete().slide().create()
 az.draw()
-

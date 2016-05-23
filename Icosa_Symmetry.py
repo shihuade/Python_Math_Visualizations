@@ -11,7 +11,7 @@ def Klein(z):
 def RiemannSphere(z):
     #mapping to Riemann Sphere via stereographic projection
     t = 1 + z.real**2 + z.imag**2
-    return 2*z.real/t, 2*z.imag/t,2/t-1
+    return 2*z.real/t, 2*z.imag/t, 2/t-1
 
 def Mobius(z):
     #distort the result image by a mobius transformation
@@ -26,11 +26,11 @@ S = np.cos(z[1]*np.pi)**2
 V = abs(np.sin(z[2]*np.pi) * np.cos(z[2]*np.pi))**0.2
 
 HSV = np.dstack((H,S,V))
-rgb = hsv_to_rgb(HSV)
+RGBImage = hsv_to_rgb(HSV)
 
 fig = plt.figure(figsize=(8,8))
-ax = fig.add_axes([0,0,1,1],aspect=1)
+ax = fig.add_axes([0,0,1,1], aspect=1)
 ax.axis('off')
-plt.imshow(rgb)
+plt.imshow(RGBImage)
 #plt.show()
 plt.savefig('Icosa_Symmetry.png')

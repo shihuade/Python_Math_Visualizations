@@ -1,9 +1,9 @@
 #coding = utf-8
 
-# An implementation of the Domino Shuffling Algorithm on Aztec Diamond Graphs.
+# An implementation of the Domino Shuffling Algorithm on Aztec Diamong Graph
 
-# This script uses the Matplotlib module to make animations of the algorithm.
-# Matplotlib gives very nice outputs but it got very slow for large n.
+# This script uses the Matplotlib module to make an animation of this algorithm.
+# Matplotlib gives very nice outputs, but it got very slow for drawing large az(n).
 # I suggest using the Cairo version instead when n is greater than 100.
 
 import random
@@ -18,27 +18,27 @@ class Aztec_Diamond:
         The keys of the dict are the "coordinates" of the unit squares. 
         Each square is specified by its left bottom corner (i,j).
         The j-th row (j from y=-n to y=n-1) contains min(n+1+j,n-j) unit squares
-        Use "n", "s", "w", "e", "x" to represent the states of the squares.
+        Use "n", "s", "w", "e", "x" to represent the state of the squares.
         """
         
         self.order = n
         self.tile = dict()
-        for j in range(-n,n):
+        for j in xrange(-n,n):
             k = min(n+1+j,n-j)
-            for i in range(-k,k):
+            for i in xrange(-k,k):
                 self.tile[(i,j)] = 'x'
                 
     def delete(self):
         """
         Delete all bad blocks in a tiling.
-        A bad block is a pair of dominoes that lie in a 2x2 square
+        A bad block is a pair of dominoes that lies in a 2x2 square
         and move towards each other under the shuffling.
         To find all the bad blocks one must start the searching from the boundary.
         """
         n = self.order
-        for j in range(-n,n):
+        for j in xrange(-n,n):
             k = min(n+1+j,n-j)
-            for i in range(-k,k):
+            for i in xrange(-k,k):
                 try:
                     if ((self.tile[(i,j)]=='n'
                          and self.tile[(i+1,j)]=='n'
@@ -73,9 +73,9 @@ class Aztec_Diamond:
         To fill in the bad blocks one must start the searching from the boundary.
         """
         n = self.order
-        for j in range(-n,n):
+        for j in xrange(-n,n):
             k = min(n+1-j,n-j)
-            for i in range(-k,k):
+            for i in xrange(-k,k):
                 try:
                     if (self.tile[(i,j)] == 'x'
                         and self.tile[(i+1,j)] == 'x'
@@ -83,8 +83,8 @@ class Aztec_Diamond:
                         and self.tile[(i+1,j+1)] == 'x'):
 
                         if random.random() > 0.5:
-                            # Here we fill the bad blocks with a pair of dominoes leaving each other
-                            # since a bad block in az(n) will be a good block in az(n+1).
+                            # Here we fill the bad blocks with a pair of dominoes leaving each other.
+                            # Since a bad block in az(n) will be a good block in az(n+1).
 
                             self.tile[(i,j)] = 's'
                             self.tile[(i+1,j)] = 's'
@@ -103,7 +103,7 @@ class Aztec_Diamond:
     def draw(self, fig_num):
         global fig, Order
         n = self.order
-        LineWidth = fig.dpi * fig.get_figwidth() / (20.0*(Order+1))
+        LineWidth = fig.dpi * fig.get_figwidth()/(20.0*(Order+1))
         ax = fig.add_axes([0,0,1,1], aspect=1)
         ax.axis([-Order-1,Order+1,-Order-1,Order+1])
         ax.axis('off')
@@ -134,18 +134,17 @@ class Aztec_Diamond:
         fig.clear()
         return self
 
-fig = plt.figure(figsize=(6,6))
+fig = plt.figure(figsize=(6,6),dpi=80)
 Order = 40
 az = Aztec_Diamond(0)
 for k in range(Order):
     az = az.delete().draw(3*k).slide().draw(3*k+1).create().draw(3*k+2)
 
-# To draw a random tiling of az(n) with n fixed, uncomment the following lines: 
+
+# To draw a random tiling of az(n) with n fixed, uncomment the following code: 
 #for k in range(Order):
 #    az = az.delete().slide().create()
 #az.draw(Order)
 
-#----------------------------------------------------
 # ImageMagick command to make a gif animation:
 # convert -delay 12 -layers Optimize -loop 0 Aztec*.png Aztec_Diamond_Matplotlib.gif
-#----------------------------------------------------

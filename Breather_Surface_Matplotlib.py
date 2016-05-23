@@ -9,8 +9,8 @@ fig = plt.figure(figsize=(6,6))
 ax = fig.gca(projection='3d', xlim=(-3,3), ylim=(-3,3), zlim=(-3,3), aspect=1)
 #ax.axis('off')
 
-x = np.linspace(-10,10,100)
-y = np.linspace(0,50,200)
+x = np.linspace(-10, 10, 100)
+y = np.linspace(0, 50, 200)
 u,v = np.meshgrid(x,y)
 
 a = 0.5
@@ -24,6 +24,6 @@ def breather(u,v):
     return x,y,z
 
 Z = breather(u,v)
-surface = ax.plot_surface(Z[0],Z[1],Z[2],rstride=1,cstride=1,lw=0.1,cmap='jet')
+surface = ax.plot_surface(Z[0], Z[1], Z[2], rstride=1, cstride=1, lw=0.1, cmap='jet')
 #plt.show()
 plt.savefig('Breather_Surface_Matplotlib.png')

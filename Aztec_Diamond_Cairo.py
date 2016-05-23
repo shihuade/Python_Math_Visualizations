@@ -12,7 +12,7 @@ class Aztec_Diamond:
         Use a dict to record a tiling of the graph.
         The keys of the dict are the "coordinates" of the unit squares. 
         Each square is specified by its left bottom corner (i,j).
-        The j-th row (j from y=-n to y=n-1) contains min(n+1+j,n-j) unit squares
+        The j-th row (j from y=-n to y=n-1) contains min(n+1+j,n-j) unit squares.
         Use "n", "s", "w", "e", "x" to represent the states of the squares.
         """
         
@@ -98,14 +98,14 @@ class Aztec_Diamond:
         n = self.order
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, size, size)
         cr = cairo.Context(surface)
-        cr.translate(size/2., size/2.)
+        cr.translate(size/2.0, size/2.0)
         d = size/((n+1)*2.0)
         cr.scale(d,d)
         cr.set_source_rgb(1,1,1)
         cr.paint()
         
         for (i,j) in self.tile.keys():
-            if (i+j+n)%2 == 1: # A domino is determined by its black square 
+            if (i+j+n) % 2 == 1: # A domino is determined by its black square 
                 if self.tile[(i,j)] == 'n':
                     cr.rectangle(i-1,j,2,1)
                     cr.set_source_rgb(255,0,0)                    

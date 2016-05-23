@@ -105,7 +105,7 @@ class Aztec_Diamond:
         cr.paint()
         
         for (i,j) in self.tile.keys():
-            if (i+j+n)%2 == 1: #a domino is determined by its black square 
+            if (i+j+n)%2 == 1: # A domino is determined by its black square 
                 if self.tile[(i,j)] == 'n':
                     cr.rectangle(i-1,j,2,1)
                     cr.set_source_rgb(255,0,0)                    

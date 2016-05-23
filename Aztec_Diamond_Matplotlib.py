@@ -18,7 +18,7 @@ class Aztec_Diamond:
         The keys of the dict are the "coordinates" of the unit squares. 
         Each square is specified by its left bottom corner (i,j).
         The j-th row (j from y=-n to y=n-1) contains min(n+1+j,n-j) unit squares
-        Use "n", "s", "w", "e", "x" to represent the state of the squares.
+        Use "n", "s", "w", "e", "x" to represent the states of the squares.
         """
         
         self.order = n

@@ -83,8 +83,8 @@ class Aztec_Diamond:
                         and self.tile[(i+1,j+1)] == 'x'):
 
                         if random.random() > 0.5:
-                            # Here we fill the bad blocks with a pair of dominoes leaving each other.
-                            # Since a bad block in az(n) will be a good block in az(n+1).
+                            # Here we fill the bad blocks with a pair of dominoes leaving each other
+                            # since a bad block in az(n) will be a good block in az(n+1).
 
                             self.tile[(i,j)] = 's'
                             self.tile[(i+1,j)] = 's'

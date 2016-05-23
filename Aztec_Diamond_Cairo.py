@@ -1,6 +1,6 @@
 #coding = utf-8
 
-# An implementation of the Domino Shuffling Algorithm on Aztec Diamong Graph
+# An implementation of the Domino Shuffling Algorithm on Aztec Diamond Graphs.
 
 import random
 import cairo

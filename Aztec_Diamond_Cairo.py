@@ -55,7 +55,7 @@ class Aztec_Diamond:
 
     def slide(self):
         n = self.order
-        new_board = aztec_diamond(n+1)
+        new_board = Aztec_Diamond(n+1)
         for (i,j) in self.tile.keys():
             if self.tile[(i,j)] == 'n': new_board.tile[(i,j+1)] = 'n'
             if self.tile[(i,j)] == 's': new_board.tile[(i,j-1)] = 's'

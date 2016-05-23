@@ -94,7 +94,6 @@ class Aztec_Diamond:
                     pass
         return self
 
-
     def draw(self, size=1024):
         n = self.order
         surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, size, size)

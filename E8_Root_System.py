@@ -42,7 +42,6 @@ for i in range(240):
         if np.sum((roots[i]-roots[j])**2) == 8:
             edges.append([i,j])
             
-#--- Step One Finished ---#
 
 #--- Step Two: compute a basis of the Coxeter plane ---#
 
@@ -90,8 +89,74 @@ u /= np.linalg.norm(u)
 v = v - np.dot(u,v)*u
 v /= np.linalg.norm(v)
 
-#--- Step Two Finished ---#
 
+#--- Step Three: project to the Coxeter plane ---#
 
+roots_2d = np.zeros((240,2))
+modulus = np.zeros(240)
+colors = np.zeros((240,3))
 
-   
+def edge_color_map(x):
+    if x < 0.6:
+        return (1, 0, 0)  
+    elif x < 0.8:
+        return (0, 0, 1)
+    elif x < 1.0:
+        return (1, 0, 1)
+    elif x < 1.2:
+        return (0.25, 0.75, 0.5)
+    elif x < 1.5:
+        return (1, 0, 0)
+    elif x < 1.6:
+        return (0.5, 0.25, 0.75)
+    elif x < 2.0:
+        return (0, 1, 0)
+    else:
+        return (1, 0, 0)
+        
+for i in range(240):
+    x = np.dot(roots[i],u)
+    y = np.dot(roots[i],v)
+    roots_2d[i] = [x,y]
+    modulus[i] = np.linalg.norm([x,y])
+    colors[i] = edge_color_map(modulus[i])
+
+# Set the point size and line width.
+size = 0.03
+LineWidth = size/10.0
+FIGSIZE = 600
+surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, FIGSIZE, FIGSIZE)
+cr = cairo.Context(surface)
+cr.translate(FIGSIZE/2.0, FIGSIZE/2.0)
+cr.scale(FIGSIZE/4.8, FIGSIZE/4.8)
+cr.set_source_rgb(1,1,1)
+cr.paint()
+
+#draw edges:
+for e in edges:
+    x = roots_2d[e[0]]
+    y = roots_2d[e[1]]
+    a, b = x
+    c, d = y
+    if modulus[e[0]] > modulus[e[1]]:
+        color = colors[e[0]]
+    else:
+        color = colors[e[1]]
+    cr.move_to(a,b)
+    cr.line_to(c,d)
+    cr.set_source_rgb(*color)
+    cr.set_line_width(LineWidth)            
+    cr.stroke()
+
+#draw vertices:
+for i in range(240):
+    x,y = roots_2d[i]
+    color = colors[i]
+    cr.arc(x,y,size,0, 2*np.pi)
+    cr.set_source_rgb(*color)
+    cr.fill_preserve()
+    cr.set_source_rgb(0,0,0)
+    cr.set_line_width(size/5)
+    cr.stroke()
+
+surface.write_to_png("E8_Root_System.png")

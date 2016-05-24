@@ -122,7 +122,7 @@ for i in range(240):
     colors[i] = edge_color_map(modulus[i])
 
 # Set the point size and line width.
-size = 0.03
+size = 0.025
 LineWidth = size/10.0
 FIGSIZE = 600
 surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, FIGSIZE, FIGSIZE)

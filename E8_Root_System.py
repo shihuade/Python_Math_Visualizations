@@ -46,7 +46,7 @@ for i in range(240):
 #--- Step Two: compute a basis of the Coxeter plane ---#
 
 # Firstly let's write down explicitly a complete set of simple roots.
-# Any choice of the set of simple roots would surfice.
+# Any choice of the set of simple roots would suffice.
 # In the following the simple roots are given by the rows of the matrix "delta"
 delta = np.eye(8)
 for i in range(5):

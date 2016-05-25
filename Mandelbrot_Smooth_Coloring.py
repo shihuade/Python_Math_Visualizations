@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 max_iterations = 500
 radius = 50
-figsize = (1200, 960)
+figsize = (12, 9.6)
 dpi = 100
 
 def color(z,i):

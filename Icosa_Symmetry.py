@@ -28,7 +28,7 @@ V = abs(np.sin(z[2]*np.pi) * np.cos(z[2]*np.pi))**0.2
 HSV = np.dstack((H,S,V))
 RGBImage = hsv_to_rgb(HSV)
 
-fig = plt.figure(figsize=(8,8))
+fig = plt.figure(figsize=(4,4))
 ax = fig.add_axes([0,0,1,1], aspect=1)
 ax.axis('off')
 plt.imshow(RGBImage)

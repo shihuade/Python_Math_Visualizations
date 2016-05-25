@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 
 max_iterations = 500
 radius = 50
-figsize = (12, 9.6)
+figsize = (1200, 960)
+dpi = 100
 
 def color(z,i):
     """
@@ -26,11 +27,11 @@ def escape(c):
         z = z**2 + c
     return 0,0,0
         
-y,x = np.ogrid[-1.16:1.17:figsize[1]*100j, -2.1:0.8:figsize[0]*100j]
+y,x = np.ogrid[-1.16:1.17:figsize[1]*dpi*1j, -2.1:0.8:figsize[0]*dpi*1j]
 z = x+y*1j
 R,G,B = np.array(np.frompyfunc(escape,1,3)(z)).astype(np.float)
 RGB = np.dstack((R,G,B))
-fig = plt.figure(figsize=figsize)
+fig = plt.figure(figsize=figsize, dpi=dpi)
 ax = fig.add_axes([0,0,1,1], aspect=1)
 ax.axis("off")
 plt.imshow(RGB)

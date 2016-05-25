@@ -26,13 +26,12 @@ def escape(c):
         z = z**2 + c
     return 0,0,0
         
-y,x = np.ogrid[-1.16:1.17:figsize[1]*1j, -2.1:0.8:figsize[0]*1j]
+y,x = np.ogrid[-1.16:1.17:figsize[1]*100j, -2.1:0.8:figsize[0]*100j]
 z = x+y*1j
 R,G,B = np.array(np.frompyfunc(escape,1,3)(z)).astype(np.float)
 RGB = np.dstack((R,G,B))
-fig = plt.figure(figsize=figsize))
+fig = plt.figure(figsize=figsize)
 ax = fig.add_axes([0,0,1,1], aspect=1)
 ax.axis("off")
 plt.imshow(RGB)
-plt.savefig("Mandelbrot_Smooth_111Coloring.png")
-
+plt.savefig("Mandelbrot_Smooth_Coloring.png")

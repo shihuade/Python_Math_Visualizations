@@ -8,3 +8,4 @@
 - [E8 root system projected to its Coxeter plane](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/E8_Root_System.png)
 - [A kaleidoscopic pattern that has icosahedral symmetry](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Icosa_Symmetry.png)
 - [The Mandelbrot set with smoothed coloring](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Mandelbrot_Smooth_Coloring.png)
+- [Combining sketch and tone for pencil drawing production]()

@@ -34,12 +34,13 @@ def img_to_np(img):
 def np_to_img(I):
     return im.fromarray((255*I).round().astype(np.uint8))
     
-    
 def GetStroke(I):
     """
     The input I is a numpy 2d-array within [0,1]. 
     The output S is also a numpy 2d-array within [0,1] and has the same shape with I.
     """
     # Compute the gradient image by the forward difference.
+    dx = np.c_[np.zeros(I.shape[0]), I[:,1:]-I[:,:-1]]
+    dy = np.r_[np.zeros(I.shape[1]), I[1:]-I[:-1]]
     G = np.sqrt(dx**2 + dy**2)
     

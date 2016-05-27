@@ -58,13 +58,13 @@ def GetStroke(I):
     index = np.argmax(response, axis=0)
     
     # C[i] is the set of pixels in G with their responses attained maximals at the i-th direction.
-    # S[i] is the set if lines toward the i-th direction. It's just the convolution of C[i] and Lthicked[i].
+    # S[i] is the set if lines toward the i-th direction. It's just the convolution of C[i] and L[i].
     C = np.zeros_like(response)
     Sp = np.zeros_like(response)
     for i in range(dirnum):
         ind = np.where(index==i)
         C[i][ind] = G[ind]
-        Sp[i] = conv2(C[i], Lthicked[i], mode="same")
+        Sp[i] = conv2(C[i], L[i], mode="same")
     S = np.sum(Sp, axis=0)    
     S = S / np.max(S)  # map back to [0,1]
     S = 1-S   # invert pixels. Since the lines in G are white.
@@ -75,5 +75,62 @@ def GetTone(I):
     Perform histogram matching so that the distribution of the result image matches the 
     empirical distributions learned from artist-drawn images.
     The input I should be a numpy 2d-array within [0,255] and dtype 'np.unit8'.
-    The output T has the same shape and dtype with I.
+    The output J has the same shape with I but with values within [0,1].
     """
+    
+def Combine(S, J, P):
+    """
+    S is the stroke image
+    J is the tone image
+    P is the pencil texture
+    S,J,P are numpy 2d-arrays with the same shape and have values within [0,1]
+    """
+    r, c = S.shape
+    epsilon = 1e-8
+    size = r*c
+    
+    # add epsilon to avoid invalid log inputs 
+    logJ = np.log(J.ravel() + epsilon)
+    logP = sps.spdiags( np.log(P.ravel()+epsilon), 0, size, size)
+    
+    e = np.ones(size)
+    Dx = sps.spdiags([-e,e], [0,c], size, size)
+    Dy = sps.spdiags([-e,e], [0,1], size, size)
+    
+    A = Lambda * (Dx * Dx.T + Dy * Dy.T) + logP * logP
+    b = logP * logJ
+    beta1d, _ = sps.linalg.cg(A, b, tol=1e-6, maxiter=80)
+    beta = beta1d.reshape(S.shape)
+    
+    T = np.power(P, beta)
+    T = (T-np.min(T)) / (np.max(T)-np.min(T))
+    return S*T
+    
+    
+def PencilDraw(filename, texture):
+    img = im.open(filename)
+    if img.size[2] > 1:
+        Y, Cb, Cr = img.convert("YCbCr").split()
+        mode = "color"
+    else:
+        Y = img.convert("L")
+        mode = "gray"
+        
+    I = img_to_np(Y)
+    
+    texture = im.open(texture).convert("L")
+    texture = img_to_np(texture)
+
+    P = StitchTexture(texture, I)
+    S = GetStroke(I)
+    J = GetTone(I)
+    result = Combine(S, J, P)
+    result = np_to_img(result)
+    
+    result.save("result_gray.jpg")
+    if mode == "color":
+        result = im.merge("YCbCr", (result, Cb, Cr))
+        result.save("result_color.jpg")
+        
+        
+PencilDraw(Input_Image, Pencil_Texture)

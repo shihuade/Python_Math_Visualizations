@@ -15,7 +15,7 @@ import Image as im
 import scipy.sparse as sps
 from scipy.misc import imrotate
 from scipy.signal import convolve2d as conv2
-
+from scipy.ndimage.filters import gaussian_filter
 
 # The Input_Image is the image that to be processed.
 # The Pencil_Texture is a suitably chosen texture image that determines the style of the output.
@@ -80,6 +80,7 @@ def GetTone(I):
     The output J has the same shape with I but with values within [0,1].
     """
     
+    J = gaussian_filter(J, 5)
     return J
     
 def StitchTexture(texture, I):

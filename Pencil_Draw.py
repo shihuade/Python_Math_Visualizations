@@ -2,6 +2,7 @@
 
 # A Python implementation of the algorithm depicted in CeWu Lu, Li Xu, JiaYa Jia's paper 
 # "Combining Sketch and Tone for Pencil Drawing Production".
+# I wrapped everything in this single file.
 
 # There are three main steps:
 # 1. Generate the stroke map S of the image.
@@ -15,12 +16,13 @@ import scipy.sparse as sps
 from scipy.misc import imrotate
 from scipy.signal import convolve2d as conv2
 
+
 # The Input_Image is the image that to be processed.
 # The Pencil_Texture is a suitably chosen texture image that determines the style of the output.
 Input_Image = "house.jpg"
 Pencil_Texture = "texture.jpg"
 
-# Now the global parameters:
+# Global parameters:
 Line_Len = 19  # must be an odd
 kr = Line_Len // 2  # kernel radius
 dirnum = 8
@@ -78,6 +80,14 @@ def GetTone(I):
     The output J has the same shape with I but with values within [0,1].
     """
     
+    return J
+    
+def StitchTexture(texture, I):
+    
+    
+    return P
+
+  
 def Combine(S, J, P):
     """
     S is the stroke image
@@ -121,13 +131,14 @@ def PencilDraw(filename, texture):
     texture = im.open(texture).convert("L")
     texture = img_to_np(texture)
 
-    P = StitchTexture(texture, I)
     S = GetStroke(I)
     J = GetTone(I)
+    P = StitchTexture(texture, I)
+    
     result = Combine(S, J, P)
     result = np_to_img(result)
-    
     result.save("result_gray.jpg")
+    
     if mode == "color":
         result = im.merge("YCbCr", (result, Cb, Cr))
         result.save("result_color.jpg")

@@ -7,9 +7,9 @@ from scipy.misc import imrotate
 from scipy.signal import convolve2d as conv2
 
 # The Input_Image is the image that to be processed,
-# The Pencil_Texture is a suitably chosen texture image that determine the style of the output.
+# The Pencil_Texture is a suitably chosen texture image that determines the style of the output.
 Input_Image = "house.jpg"
-Pencil_Texture = "pencil01.jpg"
+Pencil_Texture = "texture.jpg"
 
 # Now the global parameters:
 Line_Len = 19  # must be an odd

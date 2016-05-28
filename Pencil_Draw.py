@@ -13,6 +13,7 @@
 import numpy as np
 import Image as im
 import scipy.sparse as sps
+
 from scipy.misc import imrotate
 from scipy.signal import convolve2d as conv2
 from scipy.ndimage.filters import gaussian_filter

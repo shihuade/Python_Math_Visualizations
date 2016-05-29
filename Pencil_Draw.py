@@ -107,6 +107,8 @@ def GetTone(I, mode=0):
     
     values, bins = np.unique(I.ravel(), return_inverse = True)
     interp_values = np.interp(source_cdf, target_cdf, range(256))
+    J = interp_values[bins].reshape(I.shape)
+    J /= 255.0
     return J
     
 def StitchTexture(texture, I):

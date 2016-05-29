@@ -50,9 +50,11 @@ def GetStroke(I):
     G = np.sqrt(dx**2 + dy**2)
     
     L = np.zeros((dirnum, Line_Len, Line_Len))
+    ker = np.zeros(Line_Len, Line_Len)
+    ker[kr] = 1
     
     for i in range(dirnum):
-        L[i] = 
+        L[i] = imrotate(ker, i*180.0/dirnum, "bilinear")
         
     response = np.zeros((dirnum,)+I.shape)
         for i in range(dirnum):
@@ -130,7 +132,7 @@ def Combine(S, J, P):
     
     # add epsilon to avoid invalid log inputs 
     logJ = np.log(J.ravel() + epsilon)
-    logP = sps.spdiags( np.log(P.ravel()+epsilon), 0, size, size)
+    logP = sps.spdiags( np.log(P.ravel() + epsilon), 0, size, size)
     
     e = np.ones(size)
     Dx = sps.spdiags([-e,e], [0,c], size, size)

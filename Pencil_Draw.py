@@ -73,15 +73,40 @@ def GetStroke(I):
     S = 1-S   # invert pixels. Since the lines in G are white.
     return S
     
-def GetTone(I):
+def GetTone(I, mode=0):
     """
     Perform histogram matching so that the distribution of the result image matches the 
     empirical distributions learned from artist-drawn images.
-    The input I should be a numpy 2d-array within [0,255] and dtype 'np.unit8'.
-    The output J has the same shape with I but with values within [0,1].
+    The input I should be a numpy 2d-array within [0,1].
+    The output J has the same shape and dtype with I.
+    Initially I is slightly gaussian smoothed.
     """
+    I = gaussian_filter(I, 5)       
+    I = (255*I).round().astype(np.uint8)
+    counts = np.bincount(I.ravel(), minlength=256)
+    source_cdf = np.cumsum(counts).astype(np.float)
+    source_cdf /= source_cdf[-1]
     
-    J = gaussian_filter(J, 5)
+    p = np.zeros(256)
+    for i in range(256):
+        p1 = np.exp( - (255-i) / 9.0 ) / 9
+        p2 = (i>=105 and i<=225) / (225.0-105.0)
+        p3 = np.exp( -(i-90)**2 / (2.0*121) ) / np.sqrt(2*np.pi*11) 
+        if mode == 0:
+            w = [52, 37, 11]
+        elif mode == 1:
+            w = [42, 29, 29]
+        elif mode == 2:
+            w = [76, 22, 2]
+        else:
+            raise ValueError("mode must take values in [0,1,2]")
+        p = np.dot([p1,p2,p3], w)
+        
+    target_cdf = np.cumsum(p)
+    target_cdf /= target_cdf[-1]
+    
+    values, bins = np.unique(I.ravel(), return_inverse = True)
+    interp_values = np.interp(source_cdf, target_cdf, range(256))
     return J
     
 def StitchTexture(texture, I):

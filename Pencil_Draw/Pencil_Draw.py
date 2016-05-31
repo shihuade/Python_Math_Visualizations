@@ -98,8 +98,10 @@ def GetTone(I, omega=0):
             w = [52, 37, 11]
         elif omega == 2:
             w = [42, 29, 29]
+        elif omega == 3:
+            w = [60, 30, 5]
         else:
-            raise ValueError("omega must take values in [0,1,2]")
+            raise ValueError("omega must take values in [0,1,2,3]")
         p[i] = np.dot([p1,p2,p3], w)
         
     target_cdf = np.cumsum(p)

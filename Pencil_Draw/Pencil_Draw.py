@@ -15,16 +15,19 @@ import Image as im
 import scipy.sparse as sps
 from skimage.transform import rotate
 from scipy.signal import convolve2d as conv2
+from scipy.ndimage.filters import median_filter
 
-Input_Image = "house.jpg"
+Input_Image = "man.jpg"
 Pencil_Texture = "texture.jpg"
 
 # Global parameters:
-Line_Len = 11  
+Line_Len = 9  
 kr = Line_Len // 2  # kernel radius
-LineWidth = 3
+Line_Width = 1
 dirnum = 8
 Lambda = 0.2
+GAMMA = 1.0
+
 
 # The following two functions make conversions between image instances and numpy arrays.
 def img_to_np(img):
@@ -38,6 +41,7 @@ def GetStroke(I):
     The input I is a numpy 2d-array within [0,1]. 
     The output S has the same shape and data type with I.
     """
+    I = median_filter(I, 5)
     # Compute the gradient image by the forward difference.
     dx = np.zeros_like(I)
     dy = np.zeros_like(I)
@@ -53,7 +57,7 @@ def GetStroke(I):
     
     for i in range(dirnum):
         L[i] = rotate(ker, i*180.0/dirnum)
-        Lthicked[i] = conv2(L[i], np.ones((LineWidth, LineWidth)), "same")
+        Lthicked[i] = conv2(L[i], np.ones((Line_Width, Line_Width)), "same")
         Lthicked[i] /= np.max(Lthicked[i])
         
     response = np.zeros((dirnum,)+I.shape)
@@ -63,7 +67,7 @@ def GetStroke(I):
     index = np.argmax(response, axis=0)
     
     # C[i] is the set of pixels in G with their responses attained maximals at the i-th direction.
-    # S[i] is the set if lines toward the i-th direction. It's just the convolution of C[i] and L[i].
+    # S[i] is the set if lines toward the i-th direction.
     C = np.zeros_like(response)
     Sp = np.zeros_like(response)
     for i in range(dirnum):
@@ -73,9 +77,9 @@ def GetStroke(I):
     S = np.sum(Sp, axis=0)    
     S = S / np.max(S)  # map back to [0,1]
     S = 1-S   # invert pixels. Since the lines in G are white.
-    return S
+    return S**GAMMA
     
-def GetTone(I, omega=0):
+def GetTone(I, omega=[76, 22, 2]):
     """
     Perform histogram matching so that the distribution of the result image matches the 
     empirical distributions learned from artist-drawn images.
@@ -92,17 +96,7 @@ def GetTone(I, omega=0):
         p1 = np.exp( - (255-i) / 9.0 ) / 9
         p2 = (i>=105 and i<=225) / (225.0-105.0)
         p3 = np.exp( -(i-90)**2 / (2.0*121) ) / np.sqrt(2*np.pi*11) 
-        if omega == 0:
-            w = [76, 22, 2]
-        elif omega == 1:
-            w = [52, 37, 11]
-        elif omega == 2:
-            w = [42, 29, 29]
-        elif omega == 3:
-            w = [60, 30, 5]
-        else:
-            raise ValueError("omega must take values in [0,1,2,3]")
-        p[i] = np.dot([p1,p2,p3], w)
+        p[i] = np.dot([p1,p2,p3], omega)
         
     target_cdf = np.cumsum(p)
     target_cdf /= target_cdf[-1]

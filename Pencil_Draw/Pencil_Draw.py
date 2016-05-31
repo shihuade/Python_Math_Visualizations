@@ -75,3 +75,56 @@ def GetTone(I, omega=0):
     J /= 255.0
     return J
     
+def Combine(S, J, P):
+    """
+    S is the stroke image
+    J is the tone image
+    P is the pencil texture
+    S,J,P are numpy 2d-arrays with the same shape and have values within [0,1]
+    """
+    r, c = S.shape
+    epsilon = 1e-8
+    size = r*c
+    
+    # add epsilon to avoid invalid log inputs 
+    logJ = np.log(J.ravel() + epsilon)
+    logP = sps.spdiags( np.log(P.ravel() + epsilon), 0, size, size)
+    
+    e = np.ones(size)
+    Dx = sps.spdiags([-e,e], [0,c], size, size)
+    Dy = sps.spdiags([-e,e], [0,1], size, size)
+    
+    A = Lambda * (Dx.T * Dx + Dy.T * Dy) + logP * logP
+    b = logP * logJ
+    beta1d, _ = sps.linalg.cg(A, b, tol=1e-6, maxiter=80)
+    beta = beta1d.reshape(S.shape)
+    
+    T = np.power(P, beta)
+    T = (T-np.min(T)) / (np.max(T)-np.min(T))
+    return S*T
+    
+    
+def PencilDraw(filename, texture, omega=0):
+    img = im.open(filename)
+    channels = img.getbands()
+    if len(channels) > 1:
+        Y, Cb, Cr = img.convert("YCbCr").split()
+        mode = "color"
+    else:
+        Y = img.convert("L")
+        mode = "gray"
+        
+    I = img_to_np(Y)
+    texture = im.open(texture).convert("L").resize(Y.size)
+    P = img_to_np(texture)
+    S = GetStroke(I)
+    J = GetTone(I, omega)
+    
+    result = Combine(S, J, P)
+    result = np_to_img(result)
+    result.save("result_gray.jpg")
+    if mode == "color":
+        result = im.merge("YCbCr", (result, Cb, Cr))
+        result.save("result_color.jpg")
+        
+PencilDraw(Input_Image, Pencil_Texture, 2)

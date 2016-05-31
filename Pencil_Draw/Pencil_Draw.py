@@ -159,4 +159,4 @@ def PencilDraw(filename, texture, omega=[76,22,2]):
         result = im.merge("YCbCr", (result, Cb, Cr))
         result.save("result_color.jpg")
         
-PencilDraw(Input_Image, Pencil_Texture) # largers omega will darken the result image.
+PencilDraw(Input_Image, Pencil_Texture)

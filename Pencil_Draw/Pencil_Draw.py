@@ -79,7 +79,7 @@ def GetStroke(I):
     S = 1-S   # invert pixels. Since the lines in G are white.
     return S**GAMMA
     
-def GetTone(I, omega=[76, 22, 2]):
+def GetTone(I, omega):
     """
     Perform histogram matching so that the distribution of the result image matches the 
     empirical distributions learned from artist-drawn images.
@@ -136,7 +136,7 @@ def Combine(S, J, P):
     return S*T
     
     
-def PencilDraw(filename, texture, omega=0):
+def PencilDraw(filename, texture, omega=[76,22,2]):
     img = im.open(filename)
     channels = img.getbands()
     if len(channels) > 1:
@@ -159,4 +159,4 @@ def PencilDraw(filename, texture, omega=0):
         result = im.merge("YCbCr", (result, Cb, Cr))
         result.save("result_color.jpg")
         
-PencilDraw(Input_Image, Pencil_Texture, 0) # largers omega will darken the result image.
+PencilDraw(Input_Image, Pencil_Texture) # largers omega will darken the result image.

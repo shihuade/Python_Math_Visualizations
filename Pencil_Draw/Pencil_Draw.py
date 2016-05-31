@@ -20,9 +20,9 @@ Input_Image = "house.jpg"
 Pencil_Texture = "texture.jpg"
 
 # Global parameters:
-Line_Len = 15  
+Line_Len = 11  
 kr = Line_Len // 2  # kernel radius
-LineWidth = 5
+LineWidth = 3
 dirnum = 8
 Lambda = 0.2
 
@@ -38,6 +38,42 @@ def GetStroke(I):
     The input I is a numpy 2d-array within [0,1]. 
     The output S has the same shape and data type with I.
     """
+    # Compute the gradient image by the forward difference.
+    dx = np.zeros_like(I)
+    dy = np.zeros_like(I)
+    dx[:,1:] = I[:,1:] - I[:,:-1]
+    dy[1:] = I[1:] - I[:-1]
+    G = np.sqrt(dx**2 + dy**2)
+    G /= np.max(G)
+    
+    L = np.zeros((dirnum, Line_Len, Line_Len))
+    ker = np.zeros((Line_Len, Line_Len))
+    ker[kr] = 1
+    Lthicked = np.zeros_like(L)
+    
+    for i in range(dirnum):
+        L[i] = rotate(ker, i*180.0/dirnum)
+        Lthicked[i] = conv2(L[i], np.ones((LineWidth, LineWidth)), "same")
+        Lthicked[i] /= np.max(Lthicked[i])
+        
+    response = np.zeros((dirnum,)+I.shape)
+    for i in range(dirnum):
+        response[i] = conv2(G, L[i], mode="same")
+            
+    index = np.argmax(response, axis=0)
+    
+    # C[i] is the set of pixels in G with their responses attained maximals at the i-th direction.
+    # S[i] is the set if lines toward the i-th direction. It's just the convolution of C[i] and L[i].
+    C = np.zeros_like(response)
+    Sp = np.zeros_like(response)
+    for i in range(dirnum):
+        ind = np.where(index==i)
+        C[i][ind] = G[ind]
+        Sp[i] = conv2(C[i], Lthicked[i], mode="same")
+    S = np.sum(Sp, axis=0)    
+    S = S / np.max(S)  # map back to [0,1]
+    S = 1-S   # invert pixels. Since the lines in G are white.
+    return S
     
 def GetTone(I, omega=0):
     """
@@ -127,4 +163,4 @@ def PencilDraw(filename, texture, omega=0):
         result = im.merge("YCbCr", (result, Cb, Cr))
         result.save("result_color.jpg")
         
-PencilDraw(Input_Image, Pencil_Texture, 2)
+PencilDraw(Input_Image, Pencil_Texture, 0) # largers omega will darken the result image.

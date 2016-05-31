@@ -26,7 +26,7 @@ kr = Line_Len // 2  # kernel radius
 Line_Width = 1
 dirnum = 8
 Lambda = 0.2
-GAMMA = 1.0
+GAMMA = 3.0
 
 
 # The following two functions make conversions between image instances and numpy arrays.

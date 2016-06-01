@@ -1,6 +1,6 @@
 # 将图像转换为铅笔画风格的 Python 实现
 
-This program is a python implementation of the algorithm depicted in the paper [Combining Sketch and Tone for Pencil Drawing Production](http://www.cse.cuhk.edu.hk/~leojia/projects/pencilsketch/pencil_drawing.htm) by CeWu Lu, etc. It transforms a natural image into an artist-drawn style image. It's a single python file (along with a textute image, which you can substitute for your own taste).
+This program is a python implementation of the algorithm depicted in the paper [Combining Sketch and Tone for Pencil Drawing Production](http://www.cse.cuhk.edu.hk/~leojia/projects/pencilsketch/pencil_drawing.htm) by CeWu Lu, etc. It transforms a natural image into an artist-drawn style image. It's a single python file (along with a textute image which you can substitute it for your own taste).
 
 ## Some technica details
 

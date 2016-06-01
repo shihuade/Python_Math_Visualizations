@@ -4,7 +4,7 @@
 # The main steps are outlined in the comments below.
 # A nice explanation of the math behind this script can be found in Humphreys's book
 # "Reflection Groups and Coxeter Groups", section 17, chapter 3.
-# Casselman also writes a nice expository paper on this topic, see
+# Casselman has also written a nice expository paper on this topic, see
 # https://www.math.ubc.ca/~cass/research/pdf/Element.pdf
 
 import numpy as np

@@ -98,7 +98,7 @@ colors = np.zeros((240,3))
 
 def edge_color_map(x):
     if x < 0.6:
-        return (0, 1, 1)  
+        return (1, 1, 0)  
     elif x < 0.8:
         return (0, 0, 1)
     elif x < 1.0:
@@ -106,7 +106,7 @@ def edge_color_map(x):
     elif x < 1.2:
         return (0.25, 0.75, 0.5)
     elif x < 1.5:
-        return (1, 1, 0)
+        return (0, 1, 1)
     elif x < 1.6:
         return (0.5, 0.25, 0.75)
     elif x < 2.0:

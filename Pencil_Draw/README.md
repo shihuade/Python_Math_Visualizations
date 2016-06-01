@@ -1,5 +1,15 @@
 # 将图像转换为铅笔画风格的 Python 实现
 
+This program is a python implementation of the algorithm depicted in the paper [Combining Sketch and Tone for Pencil Drawing Production](http://www.cse.cuhk.edu.hk/~leojia/projects/pencilsketch/pencil_drawing.htm) by CeWu Lu, etc. It transforms a natural image into an artist-drawn style image. It's a single python file (along with a textute image, which you can substitute for your own taste).
+
+## Some technica details
+
+The main steps are all contained in the paper but with some technical minors omitted. To get nice results one has to add a "mean filter smoothing" and a "gamma correction". For example the picture below was smoothed by ```mean_filter(img,5)``` before computing its stroke image and added a gamma correction of factor ```3``` after the stroke computation.
+
+The choice of the edge detection approach is not important.
+
+## 一些技术细节
+
 我在实现这个程序的时候，曾经一直为无法达到作者论文中的效果而不解，甚至怀疑作者是不是隐藏了什么独门技巧没有在论文里写出来。现在经过研究终于达到了理想的效果，上传到 github，希望对大家有所帮助。
 
 这里介绍一下怎样调整参数来实现满意的效果。我们以作者项目主页上的[一副图片](http://www.cse.cuhk.edu.hk/~leojia/projects/pencilsketch/pencil_sketch_images/3--38.htm)为例：

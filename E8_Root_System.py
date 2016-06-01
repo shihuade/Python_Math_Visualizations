@@ -2,7 +2,7 @@
 
 # This script draws the figure of the E8 root system projected to its Coxeter plane.
 # The main steps are outlined in the comments below.
-# A nice explanation of the math behind this script can be find in Humphreys's book
+# A nice explanation of the math behind this script can be found in Humphreys's book
 # "Reflection Groups and Coxeter Groups", section 17, chapter 3.
 # Casselman also writes a nice expository paper on this topic, see
 # https://www.math.ubc.ca/~cass/research/pdf/Element.pdf

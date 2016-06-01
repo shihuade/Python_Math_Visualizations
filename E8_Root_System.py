@@ -81,8 +81,8 @@ I = [0,2,4,6]
 J = [1,3,5,7]
 eigenvals,eigenvecs= np.linalg.eigh(cartan)
 c = eigenvecs[:,7]
-u = np.sum([ c[i]*delta[i] for i in I ],axis=0)
-v = np.sum([ c[j]*delta[j] for j in J ],axis=0)
+u = np.sum([ c[i]*delta[i] for i in I ], axis=0)
+v = np.sum([ c[j]*delta[j] for j in J ], axis=0)
 
 # Gram-Schimdt and normalize to unit vectors.
 u /= np.linalg.norm(u)

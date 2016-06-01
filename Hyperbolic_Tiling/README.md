@@ -1,1 +1,1 @@
-# Hyperbolic Tilings: The finite state machine approach 
+# Hyperbolic Tilings: The Finite State Machine Approach 

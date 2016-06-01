@@ -125,7 +125,7 @@ for i in range(240):
 size = 0.025
 LineWidth = size/10.0
 FIGSIZE = 600
-surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, FIGSIZE, FIGSIZE)
+surface = cairo.SVGSurface("E8_Root_System.svg", FIGSIZE, FIGSIZE)
 cr = cairo.Context(surface)
 cr.translate(FIGSIZE/2.0, FIGSIZE/2.0)
 cr.scale(FIGSIZE/4.8, FIGSIZE/4.8)
@@ -159,4 +159,4 @@ for i in range(240):
     cr.set_line_width(size/5)
     cr.stroke()
 
-surface.write_to_png("E8_Root_System.png")
+surface.show_page()

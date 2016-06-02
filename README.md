@@ -10,3 +10,4 @@
 - [The Mandelbrot set with smoothed coloring](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Mandelbrot_Smooth_Coloring.png)
 - [Combining sketch and tone for pencil drawing production](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Pencil_Draw)
 - [Hyperbolic tilings: the finite state machine approach](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Hyperbolic_Tiling)
+- [Zombie outbreak in American](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Zombie_Outbreak_Simulation)

@@ -10,13 +10,13 @@ This script relies on ```numpy``` and ```moviepy``` modules.
 
 ## About the Model
 
-The basic idea is, one can use a triple ```(S,I,Z)``` to represent the densities of the three kinds of "people":
+The basic idea is, one can use a triple ```(S,I,R)``` to represent the densities of the three kinds of "people":
 - ```S```: sane people
 - ```I```: infected people. They will incubate to zombies.
-- ```Z```: zombies.
+- ```R```: zombies.
 
-```S,I,Z``` are all within [0,1]. 
+```S,I,R``` are all within [0,1]. 
 
-The advantage of this representation is that the ```(S,I,Z)``` triple can also be viewed as a RGB triple so that one can transform the density matrices into RGB images very easily.
+The advantage of this representation is that the ```(S,I,R)``` triple can also be viewed as a RGB triple so that one can transform the density matrices into RGB images very easily.
 
 

@@ -19,7 +19,7 @@ days = 300
 usa = plt.imread("usa_density.png")
 SIR = np.zeros((3,)+usa.shape)
 SIR[0] = usa
-SIR[1,200,512] = 0  # patient zero
+SIR[1,200,512] = 1.0  # patient zero
 
 def infection(SIR, infection_rate, incubation_rate):
     S,I,R = SIR
@@ -54,5 +54,5 @@ for i in range(days*24):
         ax = fig.add_axes([0,0,1,1], aspect=1)
         plt.imshow(usa, cmap="Greys_r", interpolation="nearest")
         plt.imshow(R, cmap=myCM, interpolation="nearest")
-        plt.savefig()
+        plt.savefig("zombie%03d.png"%(i/24))
         plt.clf()

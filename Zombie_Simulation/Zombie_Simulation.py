@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.ndimage.filters import convolve
 
-dt = 1.0
+dt = 1.0  # one hour as time step
 infection_rate = 0.2
 incubation_rate = 0.8
 dispersion_rates = [0, 0.3, 0.12]

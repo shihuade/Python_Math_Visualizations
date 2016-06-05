@@ -2,9 +2,9 @@
 
 ## About this script
 
-Adapted from [Zulko's code](https://gist.github.com/Zulko/6aa898d22e74aa9dafc3) with some mistakes corrected and the dependency on the ```moviey``` module removed. But you should have ```ImageMagick``` installed on your computer.
+Adapted from [Zulko's code](https://gist.github.com/Zulko/6aa898d22e74aa9dafc3) with some mistakes corrected and the dependency on the ```moviepy``` module removed. But you should have ```ImageMagick``` installed on your computer.
 
-This script generates some .png files in current path (the number of image files depends on how long you want to animate) and then convert them into a gif file:
+This script generates some .png files in current path (the number of image files depends on how long you want to animate) and then one can use the following command to convert them into a gif file:
 
 ```convert -layers Optimize -delay 16 zombie*.png zombie.gif```
 

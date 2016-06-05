@@ -48,7 +48,7 @@ for i in range(days*24):
         ax.axis("off")
         I, R = SIR[1:]
         M = np.zeros_like(I)
-        img = np.dstack((R**0.1, I**0.2, M, R**0.１))
+        img = np.dstack((R**0.1, I**0.2, M, R**0.２))
         plt.imshow(usa, cmap="Greys_r", interpolation="nearest")
         plt.imshow(img, interpolation="nearest")
         plt.savefig("zombie%03d.png"%(i/24))

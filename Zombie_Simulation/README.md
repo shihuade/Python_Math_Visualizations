@@ -1,4 +1,4 @@
-# Zombie Outbreak in American!
+# Zombie Outbreak in America!
 
 ## About this script
 

@@ -64,7 +64,7 @@ def bfs(graph, start):
                 visited.add(w)
                 queue.append((w, v))
 
-def find_path(gridsize, imagesize, linewidth=0.5, borderwidth=3):
+def find_path(gridsize, imagesize, borderwidth=3):
     
     m, n = gridsize
     W, H = imagesize
@@ -90,13 +90,13 @@ def find_path(gridsize, imagesize, linewidth=0.5, borderwidth=3):
             cr.rectangle(0,0,m-1,n-1)
             cr.set_source_rgb(0,0,0)
             cr.fill_preserve()
-            cr.set_line_width(4*linewidth)
+            cr.set_line_width(2)
             cr.stroke()
     
             for v, w in T.items():
                 if w:
                     cr.set_source_rgb(1,1,1)
-                    cr.set_line_width(linewidth)
+                    cr.set_line_width(0.5)
                     cr.move_to(v[0],v[1])
                     cr.line_to(w[0],w[1])
                     cr.stroke()
@@ -127,4 +127,4 @@ def find_path(gridsize, imagesize, linewidth=0.5, borderwidth=3):
             surface.write_to_png("maze{}.png".format(count))
         count += 1
 
-draw_random_maze(gridsize, imagesize)
+find_path(gridsize, imagesize)

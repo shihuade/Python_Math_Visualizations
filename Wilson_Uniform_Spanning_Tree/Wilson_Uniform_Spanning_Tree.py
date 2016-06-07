@@ -4,7 +4,7 @@ import random
 import cairo
 from itertools import product
 
-def grid(*size):
+def grid_graph(*size):
     
     def neighbors(v):
         neighborhood = []
@@ -18,7 +18,7 @@ def grid(*size):
         
     return {v: neighbors(v) for v in product(*map(range, size))}
 
-def ust(graph):
+def uniform_spanning_tree(graph):
     
     root = random.choice(graph.keys())     
     parent = {root: None}
@@ -37,9 +37,9 @@ def ust(graph):
             v = parent[v]
     return parent
     
-def draw_maze(m,n,W,H,linewidth=0.5,border=3):
-    g = grid(m,n)
-    T = ust(g)
+def draw_random_maze(m,n,W,H,linewidth=0.5,border=3):
+    g = grid_graph(m,n)
+    T = uniform_spanning_tree(g)
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
     cr = cairo.Context(surface)
     cr.scale(W/(m-1.0+2.0*border),-H/(n-1.0+2.0*border))
@@ -64,4 +64,4 @@ def draw_maze(m,n,W,H,linewidth=0.5,border=3):
             cr.stroke()
     surface.write_to_png("Wilson_Uniform_Spanning_Tree.png")
     
-draw_maze(80,60,800,600)
+draw_random_maze(80,60,800,600)

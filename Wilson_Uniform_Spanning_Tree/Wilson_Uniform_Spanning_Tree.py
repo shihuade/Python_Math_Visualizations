@@ -4,6 +4,9 @@ import random
 import cairo
 from itertools import product
 
+gridsize = (80, 60)
+imagesize = (800, 600)
+
 def grid_graph(*size):
     
     def neighbors(v):
@@ -37,13 +40,15 @@ def uniform_spanning_tree(graph):
             v = parent[v]
     return parent
     
-def draw_random_maze(m,n,W,H,linewidth=0.5,border=3):
-    g = grid_graph(m,n)
-    T = uniform_spanning_tree(g)
+def draw_random_maze(gridsize, imagesize, linewidth=0.5, borderwidth=3):
+    m, n = gridsize
+    W, H = imagesize
+    grid = grid_graph(m,n)
+    T = uniform_spanning_tree(grid)
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
     cr = cairo.Context(surface)
-    cr.scale(W/(m-1.0+2.0*border),-H/(n-1.0+2.0*border))
-    cr.translate(border,-n-border+1)
+    cr.scale(W/(m-1.0+2.0*borderwidth),-H/(n-1.0+2.0*borderwidth))
+    cr.translate(borderwidth,-n-borderwidth+1)
     cr.set_source_rgb(1,1,1)
     cr.paint()
     cr.set_line_cap(2)
@@ -64,4 +69,4 @@ def draw_random_maze(m,n,W,H,linewidth=0.5,border=3):
             cr.stroke()
     surface.write_to_png("Wilson_Uniform_Spanning_Tree.png")
     
-draw_random_maze(80,60,800,600)
+draw_random_maze(gridsize, imagesize)

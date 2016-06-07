@@ -11,5 +11,5 @@
 - [Combining sketch and tone for pencil drawing production](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Pencil_Draw)
 - [Hyperbolic tilings: the finite state machine approach](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Hyperbolic_Tiling)
 - [Zombie outbreak in America](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Zombie_Simulation)
-- [Wilson's uniform spanning tree algorithm](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Wilson_Uniform_Spanning_Tree.png)
+- [Wilson's uniform spanning tree algorithm](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Wilson_Uniform_Spanning_Tree)
 - [Lorenz attractor animation](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Lorenz_Attractor.py)

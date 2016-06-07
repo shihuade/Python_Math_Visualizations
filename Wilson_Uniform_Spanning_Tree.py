@@ -45,9 +45,9 @@ def draw_ust(*size):
 
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
     cr = cairo.Context(surface)
-    cr.scale(W/(m+1.0),H/(n+1.0))
-    cr.translate(1,1)
-    cr.set_source_rgb(1,1,1)
+    cr.scale(W/(m+1.0), -H/(n+1.0))
+    cr.translate(1,-n)
+    cr.set_source_rgb(0.2,0.2,0.2)
     cr.paint()
     cr.set_line_cap(2)
 
@@ -55,8 +55,8 @@ def draw_ust(*size):
         a, b = v
         if w:
             c, d = w
-            cr.set_source_rgb(0.2,0.2,0.2)
-            cr.set_line_width(0.4)
+            cr.set_source_rgb(1,1,1)
+            cr.set_line_width(0.5)
             cr.move_to(a,b)
             cr.line_to(c,d)
             cr.stroke()

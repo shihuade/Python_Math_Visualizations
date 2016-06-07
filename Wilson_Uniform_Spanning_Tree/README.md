@@ -1,6 +1,8 @@
 # Wilson 的一致生成树算法
 
-用的 ```cairo``` 绘制的，效率还不错。还做了一个 gif 动画演示宽度优先搜索。
+Wilson 算法是一个在概率论中（random walk, percolation theory, etc.）非常重要的算法，虽然它的表述比较简单，但是算法正确性的证明却很复杂。
+
+我用的 ```cairo``` 绘制的，效率还不错。还做了一个 gif 动画演示宽度优先搜索。
 
 ![maze](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Wilson_Uniform_Spanning_Tree/Wilson_Uniform_Spanning_Tree.png)
 

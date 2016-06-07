@@ -60,6 +60,6 @@ def draw_ust(*size):
             cr.move_to(a,b)
             cr.line_to(c,d)
             cr.stroke()
-    surface.write_to_png("Uniform_Spanning_Tree.png")
+    surface.write_to_png("Wilson_Uniform_Spanning_Tree.png")
 
 draw_ust(120,90,800,600)

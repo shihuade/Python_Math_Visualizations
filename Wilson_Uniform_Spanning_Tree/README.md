@@ -4,5 +4,9 @@
 
 ![maze](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Wilson_Uniform_Spanning_Tree/Wilson_Uniform_Spanning_Tree.png)
 
+第二个脚本会在当且目录下生成若干 ```.png``` 文件，然后用 ```ImageMagick``` 将其合成为 .gif 文件：
+
+``` convert -layers Optimize -delay 10 maze*.png BFS_Path_Finding.gif```
+
 
 ![path](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Wilson_Uniform_Spanning_Tree/BFS_Path_Finding.gif)

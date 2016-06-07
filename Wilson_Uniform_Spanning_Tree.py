@@ -1,6 +1,7 @@
 # coding = utf-8
 
 import random
+import cairo
 from itertools import product
 
 def grid(*size):
@@ -37,3 +38,28 @@ def ust(graph):
             v = parent[v]
     return parent
     
+def draw_ust(*size):
+    m,n,W,H = size
+    G = grid(m,n)
+    T = ust(G)
+
+    surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
+    cr = cairo.Context(surface)
+    cr.scale(W/(m+1.0),H/(n+1.0))
+    cr.translate(1,1)
+    cr.set_source_rgb(1,1,1)
+    cr.paint()
+    cr.set_line_cap(2)
+
+    for v, w in T.items():
+        a, b = v
+        if w:
+            c, d = w
+            cr.set_source_rgb(0.2,0.2,0.2)
+            cr.set_line_width(0.4)
+            cr.move_to(a,b)
+            cr.line_to(c,d)
+            cr.stroke()
+    surface.write_to_png("Uniform_Spanning_Tree.png")
+
+draw_ust(120,90,800,600)

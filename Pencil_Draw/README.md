@@ -25,7 +25,7 @@ The choice of the edge detection approach is not important.
 
 ![man_result.jpg](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Pencil_Draw/man_gray.jpg)
 
-是不是比作者的效果还要好一点呢？这应该是选择的纹理图片不同导致的。
+是不是比作者的效果还要好一点呢？
 
 还有一些要注意的地方：
 

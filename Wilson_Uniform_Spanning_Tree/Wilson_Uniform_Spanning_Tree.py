@@ -3,7 +3,6 @@
 import random
 import cairo
 from itertools import product
-from collections import deque
 
 def grid(*size):
     
@@ -18,7 +17,6 @@ def grid(*size):
         return neighborhood
         
     return {v: neighbors(v) for v in product(*map(range, size))}
-    
 
 def ust(graph):
     

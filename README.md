@@ -12,3 +12,4 @@
 - [Hyperbolic tilings: the finite state machine approach](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Hyperbolic_Tiling)
 - [Zombie outbreak in America](https://github.com/wyfly87/Python_Math_Visualizations/tree/master/Zombie_Simulation)
 - [Wilson's uniform spanning tree algorithm](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Wilson_Uniform_Spanning_Tree.png)
+- [Lorenz attractor animation](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Lorenz_Attractor.py)

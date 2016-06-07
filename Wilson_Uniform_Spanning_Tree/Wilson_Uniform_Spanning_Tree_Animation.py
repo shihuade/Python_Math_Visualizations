@@ -7,6 +7,8 @@ from collections import deque
 
 gridsize = (80, 60)
 imagesize = (800, 600)
+linewidth = 0.5 
+borderwidth = 3
 
 def grid_graph(*size):
     
@@ -42,6 +44,7 @@ def uniform_spanning_tree(graph):
     return parent
 
 def tree_to_graph(tree):
+    
     graph = {v: [] for v in tree}
     for vertex in tree:
         parent = tree[vertex]
@@ -51,7 +54,7 @@ def tree_to_graph(tree):
     return graph
 
 def bfs(graph, start):
-
+    
     queue = deque()
     queue.append((start, None))
     visited = set([start])
@@ -62,3 +65,5 @@ def bfs(graph, start):
             if w not in visited:
                 visited.add(w)
                 queue.append((w, v))
+
+def find_path(graph, start, end)

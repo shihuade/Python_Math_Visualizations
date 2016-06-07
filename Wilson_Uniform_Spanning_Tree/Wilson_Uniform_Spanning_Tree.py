@@ -59,13 +59,11 @@ def draw_random_maze(gridsize, imagesize, linewidth=0.5, borderwidth=3):
     cr.stroke()
     
     for v, w in T.items():
-        a, b = v
         if w:
-            c, d = w
             cr.set_source_rgb(1,1,1)
             cr.set_line_width(linewidth)
-            cr.move_to(a,b)
-            cr.line_to(c,d)
+            cr.move_to(v[0],v[1])
+            cr.line_to(w[0],w[1])
             cr.stroke()
     surface.write_to_png("Wilson_Uniform_Spanning_Tree.png")
     

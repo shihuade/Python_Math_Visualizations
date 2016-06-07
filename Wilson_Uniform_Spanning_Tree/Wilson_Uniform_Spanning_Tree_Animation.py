@@ -7,8 +7,6 @@ from collections import deque
 
 gridsize = (80, 60)
 imagesize = (800, 600)
-linewidth = 0.5 
-borderwidth = 3
 
 def grid_graph(*size):
     
@@ -66,7 +64,7 @@ def bfs(graph, start):
                 visited.add(w)
                 queue.append((w, v))
 
-def find_path(gridsize, imagesize, linewidth=0.5, borderwidth):
+def find_path(gridsize, imagesize, linewidth=0.5, borderwidth=3):
     
     m, n = gridsize
     W, H = imagesize
@@ -79,7 +77,7 @@ def find_path(gridsize, imagesize, linewidth=0.5, borderwidth):
     visitedfrom = dict()
     count = 0
     
-    for child, parent in bfs(graph, start):
+    for child, parent in bfs(G, start):
         visitedfrom[child] = parent
         if child == end or count % 50 == 0:
             surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)

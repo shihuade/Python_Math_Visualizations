@@ -23,7 +23,7 @@ The choice of the edge detection approach is not important.
 
 最后得到的结果如下：
 
-![man_result.jpg](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Pencil_Draw/man_gray.jpg)
+![man_result.jpg](https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Pencil_Draw/man_gray.jpg=100x"")
 
 是不是比作者的效果还要好一点呢？
 

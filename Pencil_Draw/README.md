@@ -23,7 +23,7 @@ The choice of the edge detection approach is not important.
 
 最后得到的结果如下：
 
-< img src = "https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Pencil_Draw/man_gray.jpg" width=400 align=center />
+<img src = "https://github.com/wyfly87/Python_Math_Visualizations/blob/master/Pencil_Draw/man_gray.jpg" width=400 align=center/>
 
 是不是比作者的效果还要好一点呢？
 

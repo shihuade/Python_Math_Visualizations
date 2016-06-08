@@ -121,7 +121,7 @@ def find_path(gridsize, imagesize, borderwidth=3):
                     cr.set_source_rgb(1,0,0)
                     cr.set_line_width(0.5)
                     cr.stroke()
-                surface.write_to_png("maze{}.png".format(count))
+                surface.write_to_png("maze%03d.png"%(int(count/50.0)))
                 return path[::-1]
 
             surface.write_to_png("maze%03d.png"%(count/50))

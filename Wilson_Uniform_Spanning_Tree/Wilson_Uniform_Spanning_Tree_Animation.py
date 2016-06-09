@@ -89,9 +89,9 @@ def find_path(gridsize, imagesize, borderwidth=3):
             surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
             cr = cairo.Context(surface)
             
-            # borderwidth is the distance between the border of the maze and edge of the page
+            # borderwidth is the distance between the border of the maze and the edge of the page
             # the coordinate system of cairo has its (0,0) at the upperleft corner
-            # we need to transform the origin to the lowerleft corner
+            # we need to transform it to the lowerleft corner
             cr.scale(W/(m-1.0+2.0*borderwidth),-H/(n-1.0+2.0*borderwidth))
             cr.translate(borderwidth,-n-borderwidth+1)
             
@@ -107,7 +107,7 @@ def find_path(gridsize, imagesize, borderwidth=3):
             cr.set_line_width(2)
             cr.stroke()
             
-            # draw maze in white lines
+            # draw maze in white
             for v, w in T.items():
                 if w:
                     cr.set_source_rgb(1,1,1)
@@ -125,7 +125,7 @@ def find_path(gridsize, imagesize, borderwidth=3):
                     cr.set_line_width(0.5)
                     cr.stroke()
                     
-            # if a path is found, then draw it with red
+            # if a path is found, then draw it red
             if child == end:
                 path = [end]
                 w = end

@@ -34,7 +34,10 @@ def uniform_spanning_tree(graph):
             neighbor = random.choice(graph[v])
             parent[v] = neighbor
             v = neighbor
-
+            
+        # can you see where is the "loop erasing"?
+        # the trick is when you are visiting a vertex twice, the dict "parent" only records the second visit    
+        
         v = vertex
         while v not in tree:
             tree.add(v)
@@ -42,7 +45,9 @@ def uniform_spanning_tree(graph):
     return parent
 
 def tree_to_graph(tree):
-    
+    """
+    This step is for the bfs animation
+    """
     graph = {v: [] for v in tree}
     for vertex in tree:
         parent = tree[vertex]
@@ -52,7 +57,7 @@ def tree_to_graph(tree):
     return graph
 
 def bfs(graph, start):
-    
+
     queue = deque()
     queue.append((start, None))
     visited = set([start])
@@ -74,6 +79,7 @@ def find_path(gridsize, imagesize, borderwidth=3):
     
     start = (0,0)
     end = (m-1,n-1)
+    # use a dict to record each step
     visitedfrom = dict()
     count = 0
     
@@ -82,17 +88,26 @@ def find_path(gridsize, imagesize, borderwidth=3):
         if child == end or count % 50 == 0:
             surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, W, H)
             cr = cairo.Context(surface)
+            
+            # borderwidth is the distance between the border of the maze and edge of the page
+            # the coordinate system of cairo has its (0,0) at the upperleft corner
+            # we need to transform the origin to the lowerleft corner
             cr.scale(W/(m-1.0+2.0*borderwidth),-H/(n-1.0+2.0*borderwidth))
             cr.translate(borderwidth,-n-borderwidth+1)
+            
+            # paint the page "white"
             cr.set_source_rgb(1,1,1)
             cr.paint()
             cr.set_line_cap(2)
+            
+            # paint the background color of the maze "black"
             cr.rectangle(0,0,m-1,n-1)
             cr.set_source_rgb(0,0,0)
             cr.fill_preserve()
             cr.set_line_width(2)
             cr.stroke()
-    
+            
+            # draw maze in white lines
             for v, w in T.items():
                 if w:
                     cr.set_source_rgb(1,1,1)
@@ -100,7 +115,8 @@ def find_path(gridsize, imagesize, borderwidth=3):
                     cr.move_to(v[0],v[1])
                     cr.line_to(w[0],w[1])
                     cr.stroke()
-            
+                    
+            # draw visited cells in green
             for a, b in visitedfrom.items():
                 if b:
                     cr.move_to(a[0],a[1])
@@ -108,7 +124,8 @@ def find_path(gridsize, imagesize, borderwidth=3):
                     cr.set_source_rgb(0,1,0)
                     cr.set_line_width(0.5)
                     cr.stroke()
-            
+                    
+            # if a path is found, then draw it with red
             if child == end:
                 path = [end]
                 w = end
@@ -122,6 +139,7 @@ def find_path(gridsize, imagesize, borderwidth=3):
                     cr.set_line_width(0.5)
                     cr.stroke()
                 surface.write_to_png("maze%03d.png"%(int(count/50.0+0.5)))
+                # return the path from "start" to "end"
                 return path[::-1]
 
             surface.write_to_png("maze%03d.png"%(count/50))

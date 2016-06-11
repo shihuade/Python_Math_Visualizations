@@ -2,9 +2,9 @@
 
 This program is a python implementation of the algorithm depicted in the paper [Combining Sketch and Tone for Pencil Drawing Production](http://www.cse.cuhk.edu.hk/~leojia/projects/pencilsketch/pencil_drawing.htm) by CeWu Lu, etc. It transforms a natural image into an artist-drawn style image. It's a single python file (along with a textute image which you can substitute it for your own taste).
 
-## Some technica details
+## Some technical details
 
-The main steps are all contained in the paper but with some technical minors omitted. To get nice results one has to add a "mean filter smoothing" and a "gamma correction". For example the picture below was smoothed by ```mean_filter(img,5)``` before computing its stroke image and added a gamma correction of factor ```3``` after the stroke computation.
+The main steps are all contained in the paper but with some technical minors omitted. To get nice results one has to add a "mean filter smoothing" and a "gamma correction" in suitable places. For example the picture below was smoothed by ```mean_filter(img,5)``` before computing its stroke image and added a gamma correction of factor ```3``` after the stroke computation.
 
 The choice of the edge detection approach is not important.
 

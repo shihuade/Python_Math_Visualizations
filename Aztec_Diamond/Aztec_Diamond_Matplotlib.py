@@ -149,5 +149,5 @@ az = Aztec_Diamond(0)
 
 #-----------------------------------------------------------------------------------
 # ImageMagick command to make a gif animation:
-# convert -delay 12 -layers Optimize -loop 0 Aztec*.png Aztec_Diamond_Matplotlib.gif
+# convert -delay 12 -layers Optimize Aztec*.png Aztec_Diamond_Matplotlib.gif
 #-----------------------------------------------------------------------------------
